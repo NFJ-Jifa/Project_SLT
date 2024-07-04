@@ -25,10 +25,17 @@ public class TicTacToe {
 
             if (board.isCellEmpty(row, col)) { // Checks if the selected cell is empty
                 board.place(row, col, currentPlayer.getMarker()); // Places the marker of the current player
-
+                if (hasWinner()) { // Checks if the current player has won
                     board.print();
+                    System.out.println("Player " + currentPlayer.getMarker() + " wins!"); // Announces the winner
+                    break; // Ends the loop and thus the game
+                } else if (board.isFull()) { // Checks if the board is full
+                    board.print();
+                    System.out.println("It's a draw!"); // Announces that the game is a draw
+                    break; // Ends the loop and thus the game
+                } else {
                     switchCurrentPlayer(); // Switches the current player
-
+                }
             } else {
                 System.out.println("Cell is not empty! Try again."); // Outputs an error message if the cell is not empty
             }
@@ -40,7 +47,22 @@ public class TicTacToe {
         currentPlayer = (currentPlayer == player1) ? player2 : player1; // Switches between Player 1 and Player 2
     }
 
+    private boolean hasWinner() { // Method that checks if there is a winner
+        char[][] cells = board.getCells();
+        for (int i = 0; i < 3; i++) { // Loop that checks each row and column
+            // Checks if a row or column has the same marker
+            if ((cells[i][0] == currentPlayer.getMarker() && cells[i][1] == currentPlayer.getMarker() && cells[i][2] == currentPlayer.getMarker()) ||
+                    (cells[0][i] == currentPlayer.getMarker() && cells[1][i] == currentPlayer.getMarker() && cells[2][i] == currentPlayer.getMarker())) {
+                return true; // Returns true if there is a winner
+            }
+        } // Checks the diagonals
 
+        if ((cells[0][0] == currentPlayer.getMarker() && cells[1][1] == currentPlayer.getMarker() && cells[2][2] == currentPlayer.getMarker()) ||
+                (cells[0][2] == currentPlayer.getMarker() && cells[1][1] == currentPlayer.getMarker() && cells[2][0] == currentPlayer.getMarker())) {
+            return true; // Returns true if there is a winner on a diagonal
+        }
+        return false; // Returns false if there is no winner
+    }
 
     public static void main(String[] args) { // Main method that starts the program
         TicTacToe game = new TicTacToe(); // Creates a new TicTacToe game
