@@ -35,6 +35,19 @@ public class Board {
         }
     }
 
+    public void print() { // Method to print the board
+        System.out.println("▁▁▁▁▁▁▁"); // Prints a top border line
+        for (int i = 0; i < 3; i++) {
+            System.out.print("|"); // Prints a left border line
+            for (int j = 0; j < 3; j++) {
+                System.out.print(cells[i][j] == ' ' ? " " : cells[i][j]); // Prints the cell character or a space
+                System.out.print("|"); // Prints a vertical separator between cells
+            }
+            System.out.println(); // Line break after each row
+        }
+        System.out.println("▔▔▔▔▔▔▔"); // Prints a bottom border line
+    }
+
     public char[][] getCells() { // Method to return the board
         return cells; // Returns the array "cells"
     }

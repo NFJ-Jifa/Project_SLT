@@ -16,7 +16,7 @@ public class TicTacToe {
     public void start() { // Method that starts the game
         Scanner scanner = new Scanner(System.in);
         while (true) { // Infinite loop for the game
-
+            board.print(); // Prints the current game board
             System.out.println("Current Player: " + currentPlayer.getMarker()); // Displays the current player
             System.out.print("row (0-2): "); // Asks for the row for the next move
             int row = scanner.nextInt(); // Reads the row
@@ -25,14 +25,20 @@ public class TicTacToe {
 
             if (board.isCellEmpty(row, col)) { // Checks if the selected cell is empty
                 board.place(row, col, currentPlayer.getMarker()); // Places the marker of the current player
+
+                    board.print();
+                    switchCurrentPlayer(); // Switches the current player
+
             } else {
                 System.out.println("Cell is not empty! Try again."); // Outputs an error message if the cell is not empty
             }
         }
 
-
     }
 
+    private void switchCurrentPlayer() { // Method that switches the current player
+        currentPlayer = (currentPlayer == player1) ? player2 : player1; // Switches between Player 1 and Player 2
+    }
 
 
 
