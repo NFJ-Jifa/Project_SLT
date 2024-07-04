@@ -40,6 +40,17 @@ public class TicTacToe {
                 System.out.println("Cell is not empty! Try again."); // Outputs an error message if the cell is not empty
             }
         }
+        System.out.println("Do you want to start a new Game?"); // Asks for another Game
+        System.out.println("Press Enter to start a game or any other key to exit the Game!"); //Option to press enter to restart or any other key to exit
+        scanner.nextLine();
+        String esc = scanner.nextLine();
+        if (esc.trim().isEmpty()) { // Checks if the input is empty
+            System.out.println("Starting a new Round!");
+            board.clear(); // Clears the game board
+            start(); // Starts the game again
+        } else {
+            System.out.println("exiting the Game");
+        }
 
     }
 
