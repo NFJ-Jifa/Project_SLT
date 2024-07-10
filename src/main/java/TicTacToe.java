@@ -54,11 +54,11 @@ public class TicTacToe {
 
     }
 
-    private void switchCurrentPlayer() { // Method that switches the current player
+    void switchCurrentPlayer() { // Method that switches the current player
         currentPlayer = (currentPlayer == player1) ? player2 : player1; // Switches between Player 1 and Player 2
     }
 
-    private boolean hasWinner() { // Method that checks if there is a winner
+    boolean hasWinner() { // Method that checks if there is a winner
         char[][] cells = board.getCells();
         for (int i = 0; i < 3; i++) { // Loop that checks each row and column
             // Checks if a row or column has the same marker
@@ -78,5 +78,9 @@ public class TicTacToe {
     public static void main(String[] args) { // Main method that starts the program
         TicTacToe game = new TicTacToe(); // Creates a new TicTacToe game
         game.start(); // Starts the game
+    }
+
+    public Player getCurrentPlayer() {
+        return  currentPlayer;
     }
 }
